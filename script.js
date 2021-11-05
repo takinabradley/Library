@@ -42,7 +42,6 @@ function removeForm() {
 
 
 function addToLibrary (myLibrary) {
-  //should bring up a proper form.
   createForm();
 
   submitBtn = document.querySelector('.submitBtn');
@@ -58,13 +57,6 @@ function addToLibrary (myLibrary) {
     displayBooks(myLibrary);
     removeForm();
   })
-  // let title = prompt("Add a book!\nWrite the title.");
-  // let author = prompt("Add a book!\n Write the author.");
-  // let pages = prompt("Add a book!\n How many pages?");
-  // let read = prompt("Add a book!\n Have you read it? ('true/false')");
-  // myLibrary.push(new Book(title, author, pages, read));
-  
-  console.log(myLibrary);
 }
 
 
