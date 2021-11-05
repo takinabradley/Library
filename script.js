@@ -6,13 +6,63 @@ function Book(title, author, pages, read) { //Object Constructor
 }
 
 
+function createForm() {
+  form = document.querySelector('form');
+
+  titleInput = document.createElement('input');
+  titleInput.classList.add('titleInput');
+  titleInput.setAttribute('placeholder', 'Title');
+  form.appendChild(titleInput);
+
+  authorInput = document.createElement('input');
+  authorInput.classList.add('authorInput');
+  authorInput.setAttribute('placeholder', 'author');
+  form.appendChild(authorInput);
+
+  pagesInput = document.createElement('input');
+  pagesInput.classList.add('pagesInput');
+  pagesInput.setAttribute('placeholder', 'pages');
+  form.appendChild(pagesInput);
+
+  readInput = document.createElement('input');
+  readInput.classList.add('readInput');
+  readInput.setAttribute('placeholder', 'Read? True/False');
+  form.appendChild(readInput);
+
+  submitBtn = document.createElement('button');
+  submitBtn.classList.add("submitBtn");
+  submitBtn.setAttribute('type', 'button');
+  submitBtn.textContent = 'Submit';
+  form.appendChild(submitBtn);
+}
+
+function removeForm() {
+  document.querySelector('form').innerHTML = '';
+}
+
+
 function addToLibrary (myLibrary) {
   //should bring up a proper form.
-  let title = prompt("Add a book!\nWrite the title.");
-  let author = prompt("Add a book!\n Write the author.");
-  let pages = prompt("Add a book!\n How many pages?");
-  let read = prompt("Add a book!\n Have you read it? ('true/false')");
-  myLibrary.push(new Book(title, author, pages, read));
+  createForm();
+
+  submitBtn = document.querySelector('.submitBtn');
+  addBtn = document.querySelector('.addBook');
+
+  submitBtn.addEventListener('click', (e) => {
+    title = document.querySelector('.titleInput').value;
+    author = document.querySelector('.authorInput').value;
+    pages = document.querySelector('.pagesInput').value;
+    read = document.querySelector('.readInput').value;
+    myLibrary.push(new Book(title, author, pages, read));
+    addBtn.classList.toggle('active');
+    displayBooks(myLibrary);
+    removeForm();
+  })
+  // let title = prompt("Add a book!\nWrite the title.");
+  // let author = prompt("Add a book!\n Write the author.");
+  // let pages = prompt("Add a book!\n How many pages?");
+  // let read = prompt("Add a book!\n Have you read it? ('true/false')");
+  // myLibrary.push(new Book(title, author, pages, read));
   
   console.log(myLibrary);
 }
@@ -79,6 +129,9 @@ function addBookInput (myLibrary) {
   addButton = document.querySelector('.addBook');
   
   addButton.addEventListener('click', e => {
+    if (!addButton.classList.contains('active')) return;
+    addButton.classList.toggle('active');
+    if (document.querySelector('.library').childElementCount === 15) return;
     addToLibrary(myLibrary);
     displayBooks(myLibrary);
   });
@@ -108,7 +161,4 @@ function init () {
   addBookInput(myLibrary);
 }
 
-init();
-
-
-  
+init(); 

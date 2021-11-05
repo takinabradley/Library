@@ -4,11 +4,16 @@
 
 html, body, h1, h2 {
 	margin: 0;
-	padding: 0;
+  padding: 0;
+}
+
+html {
+	height: 100%;
 }
 
 body {
-	height: 100vh;
+	display: flex;
+	height: 100%;
 	background-color: rgb(242, 243, 244);
 	display: flex;
 	flex-direction: column;
@@ -39,9 +44,22 @@ main {
 	padding: 10px;
 	border-right: 1px solid lightgray;
 	align-items: center;
+	gap: 10px;
 }
 
-.sidebar button {
+.sidebar .addBook {
+	width: 75%;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	align-items: center;
+	gap: 5px;
+}
+
+.submitBtn {
 	width: 75%;
 }
 
@@ -52,6 +70,7 @@ main {
 	height: 100%;
 	gap: 10px;
 	padding: 10px;
+	align-content: flex-start;
 }
 
 .book {
@@ -59,12 +78,10 @@ main {
   flex-direction: column;
   justify-content: space-between;
 	background-color: rgba(146, 207, 233, .5);
-	height: 25%;
-	min-width: 15%;
-	max-width: 15%;
+	height: 33%;
+	width: 19%;
 	padding: 10px;
 	text-align: center;
-	flex: 1;
 }
 
 .bookInfo {
@@ -89,7 +106,7 @@ main {
 }
 
 .readButton {
-	background-color: rgb(255, 241, 209);
+	background-color: lightgray;
 	width: 75%;
 	height: 48px;
 }
