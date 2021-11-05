@@ -59,6 +59,10 @@ form {
 	gap: 5px;
 }
 
+ input {
+	 width: 75%;
+ }
+ 
 .submitBtn {
 	width: 75%;
 }
