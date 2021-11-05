@@ -30,7 +30,6 @@ function displayBooks (myLibrary) {
     
     book = document.createElement('article');
     book.classList.add('book');
-    book.setAttribute('data-key', i); //used to remove each book from library
     library.appendChild(book);
     
     
@@ -66,10 +65,11 @@ function displayBooks (myLibrary) {
     
     deleteButton = document.createElement('button');
     deleteButton.classList.add('deleteButton');
+    deleteButton.setAttribute('data-key', i); //used to remove each book from library
     deleteButton.textContent = 'Delete';
     bookButtons.appendChild(deleteButton);
   }
-  bookButtonInput();
+  bookButtonInput(myLibrary);
 }
 
 
@@ -85,11 +85,17 @@ function addBookInput (myLibrary) {
 }
 
 
-function bookButtonInput () {
+function bookButtonInput (myLibrary) {
   readButtons = document.querySelectorAll('.readButton');
-  
   readButtons.forEach( button => button.addEventListener('click', (e) => { //create a function for this.
     button.classList.toggle('read');
+  }));
+  
+  deleteButtons = document.querySelectorAll('.deleteButton');
+  deleteButtons.forEach( button => button.addEventListener('click', (e) => {
+    dataKey = e.target.getAttribute('data-key');
+    myLibrary.splice(dataKey, 1);
+    displayBooks(myLibrary);
   }));
 }
 

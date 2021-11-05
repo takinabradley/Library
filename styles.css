@@ -9,9 +9,10 @@ html, body, h1, h2 {
 
 body {
 	height: 100vh;
-	background-color: ivory;
+	background-color: rgb(242, 243, 244);
 	display: flex;
 	flex-direction: column;
+	font-family: sans-serif;
 }
 
 header {
@@ -19,8 +20,8 @@ header {
 	justify-content: center;
 	align-items: center;
 	height: 60px;
-	background-color: wheat;
-	border-bottom: 1px solid rgb(215, 197, 162);
+	background-color: lightgray;
+	border-bottom: 1px solid rgb(180, 180, 180)
 }
 
 
@@ -34,9 +35,9 @@ main {
 	flex-direction: column;
 	flex: 1;
 	height: 100%;
-	background-color: rgb(255, 241, 209);
+	background-color: rgb(229, 230, 231);
 	padding: 10px;
-	border-right: 1px solid rgb(215, 197, 162);
+	border-right: 1px solid lightgray;
 	align-items: center;
 }
 
@@ -57,7 +58,7 @@ main {
 	display: flex;
   flex-direction: column;
   justify-content: space-between;
-	background-color: skyblue;
+	background-color: rgba(146, 207, 233, .5);
 	height: 25%;
 	min-width: 15%;
 	max-width: 15%;
