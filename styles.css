@@ -1,0 +1,103 @@
+* {
+	box-sizing: border-box;
+}
+
+html, body, h1, h2 {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	height: 100vh;
+	background-color: ivory;
+	display: flex;
+	flex-direction: column;
+}
+
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
+	background-color: wheat;
+	border-bottom: 1px solid rgb(215, 197, 162);
+}
+
+
+main {
+	display: flex;
+	height: 100%;
+}
+
+.sidebar  {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	height: 100%;
+	background-color: rgb(255, 241, 209);
+	padding: 10px;
+	border-right: 1px solid rgb(215, 197, 162);
+	align-items: center;
+}
+
+.sidebar button {
+	width: 75%;
+}
+
+.library {
+	display: flex;
+	flex-wrap: wrap;
+	flex: 5;
+	height: 100%;
+	gap: 10px;
+	padding: 10px;
+}
+
+.book {
+	display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+	background-color: skyblue;
+	height: 25%;
+	min-width: 15%;
+	max-width: 15%;
+	padding: 10px;
+	text-align: center;
+	flex: 1;
+}
+
+.bookInfo {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.bookTitle {
+	font-size: 18px;
+}
+
+.bookPages {
+	font-style: italic;
+}
+
+.bookButtons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.readButton {
+	background-color: rgb(255, 241, 209);
+	width: 75%;
+	height: 48px;
+}
+
+.read {
+	background-color: green;
+}
+
+.deleteButton {
+	background-color: red;
+	width: 75%;
+}
