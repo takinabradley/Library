@@ -5,6 +5,50 @@ function Book(title, author, pages, read) { //Object Constructor
 	this.read = read;
 }
 
+Book.prototype.createCard = function (index) {
+  const library = document.querySelector('.library');
+  
+  book = document.createElement('article');
+  book.classList.add('book');
+  library.appendChild(book);
+  
+  
+  bookInfo = document.createElement('div');
+  bookInfo.classList.add('bookInfo');
+  book.appendChild(bookInfo);
+  
+  bookTitle = document.createElement('h2');
+  bookTitle.classList.add('bookTitle');
+  bookTitle.textContent = this.title;
+  bookInfo.appendChild(bookTitle);
+  
+  bookAuthor = document.createElement('span');
+  bookAuthor.classList.add('bookAuthor');
+  bookAuthor.textContent = this.author;
+  bookInfo.appendChild(bookAuthor);
+  
+  bookPages = document.createElement('span');
+  bookPages.classList.add('bookPages');
+  bookPages.textContent = `${this.pages} pages`;
+  bookInfo.appendChild(bookPages);
+  
+  
+  bookButtons = document.createElement('div');
+  bookButtons.classList.add('bookButtons');
+  book.appendChild(bookButtons);
+  
+  readButton = document.createElement('button');
+  readButton.classList.add('readButton');
+  if (this.read === 'true') readButton.classList.add('read');
+  readButton.textContent= "Read";
+  bookButtons.appendChild(readButton);
+  
+  deleteButton = document.createElement('button');
+  deleteButton.classList.add('deleteButton');
+  deleteButton.setAttribute('data-key', index); //used to remove each book from library
+  deleteButton.textContent = 'Delete';
+  bookButtons.appendChild(deleteButton);
+}
 
 function createForm() {
   form = document.querySelector('form');
@@ -67,56 +111,13 @@ function clearBooks () {
 
 function displayBooks (myLibrary) {
   clearBooks();
-  for (i = 0; i < myLibrary.length; i++) {
-    const library = document.querySelector('.library');
-    
-    book = document.createElement('article');
-    book.classList.add('book');
-    library.appendChild(book);
-    
-    
-    bookInfo = document.createElement('div');
-    bookInfo.classList.add('bookInfo');
-    book.appendChild(bookInfo);
-    
-    bookTitle = document.createElement('h2');
-    bookTitle.classList.add('bookTitle');
-    bookTitle.textContent = myLibrary[i].title;
-    bookInfo.appendChild(bookTitle);
-    
-    bookAuthor = document.createElement('span');
-    bookAuthor.classList.add('bookAuthor');
-    bookAuthor.textContent = myLibrary[i].author;
-    bookInfo.appendChild(bookAuthor);
-    
-    bookPages = document.createElement('span');
-    bookPages.classList.add('bookPages');
-    bookPages.textContent = `${myLibrary[i].pages} pages`;
-    bookInfo.appendChild(bookPages);
-    
-    
-    bookButtons = document.createElement('div');
-    bookButtons.classList.add('bookButtons');
-    book.appendChild(bookButtons);
-    
-    readButton = document.createElement('button');
-    readButton.classList.add('readButton');
-    if (myLibrary[i].read === 'true') readButton.classList.add('read');
-    readButton.textContent= "Read";
-    bookButtons.appendChild(readButton);
-    
-    deleteButton = document.createElement('button');
-    deleteButton.classList.add('deleteButton');
-    deleteButton.setAttribute('data-key', i); //used to remove each book from library
-    deleteButton.textContent = 'Delete';
-    bookButtons.appendChild(deleteButton);
-  }
+  myLibrary.forEach( (Book, index) => Book.createCard(index));
   bookButtonInput(myLibrary);
 }
 
 
-function addBookInput (myLibrary) {
-  //should bring up proper form
+function allowBookAdding (myLibrary) {
+  //enables 'Add Book' button
 
   addButton = document.querySelector('.addBook');
   
@@ -150,7 +151,7 @@ function init () {
   myLibrary.push(Eragon);
 
   displayBooks(myLibrary);
-  addBookInput(myLibrary);
+  allowBookAdding(myLibrary);
 }
 
 init(); 
