@@ -100,11 +100,21 @@ function addToLibrary (myLibrary) {
     const read = document.querySelector('.readInput').value;
     myLibrary.push(new Book(title, author, pages, read));
     addBtn.classList.toggle('active');
+    saveToLocalStorage(myLibrary);
     displayBooks(myLibrary);
     removeForm();
   })
 }
 
+function saveToLocalStorage (myLibrary) {
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+  if (myLibrary.length === 0) localStorage.clear();
+  console.log(localStorage);
+}
+
+function getFromLocalStorage () {
+  return JSON.parse(localStorage.myLibrary).map(jsonBook => new Book(jsonBook.title, jsonBook.author, jsonBook.pages, jsonBook.read));
+}
 
 function clearBooks () {
   document.querySelector('.library').innerHTML = '';
@@ -144,15 +154,22 @@ function bookButtonInput (myLibrary) {
     const bookIndex = e.target.getAttribute('data-key');
     myLibrary.splice(bookIndex, 1);
     displayBooks(myLibrary);
+    saveToLocalStorage(myLibrary);
   }));
 }
 
 
 function init () {
   let myLibrary = [];
-  const Eragon = new Book('Eragon', 'Chris Paolini', 754, 'true');
-  myLibrary.push(Eragon);
 
+  if (localStorage.length > 0) {
+    myLibrary = getFromLocalStorage();
+  } else {
+    myLibrary = [];
+    const bookExample = new Book('Title', 'Author', 120, 'false');
+    myLibrary.push(bookExample);
+  }
+  
   displayBooks(myLibrary);
   allowBookAdding(myLibrary);
 }
