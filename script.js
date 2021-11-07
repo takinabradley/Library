@@ -98,7 +98,7 @@ function addToLibrary (myLibrary) {
     const title = document.querySelector('.titleInput').value;
     const author = document.querySelector('.authorInput').value;
     const pages = document.querySelector('.pagesInput').value;
-    const read = document.querySelector('.readInput').value;
+    const read = document.querySelector('.readInput').value.toLowerCase();
     myLibrary.push(new Book(title, author, pages, read));
     addBtn.classList.toggle('active');
     saveToLocalStorage(myLibrary);
