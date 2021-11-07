@@ -35,7 +35,7 @@ Book.prototype.createCard = function (index) {
   
   const bookButtons = document.createElement('div');
   bookButtons.classList.add('bookButtons');
-  bookButtons.setAttribute('data-key', index); //tells delete button index in array
+  bookButtons.setAttribute('data-key', index); //stores place of book in array
   book.appendChild(bookButtons);
   
   const readButton = document.createElement('button');
@@ -46,7 +46,6 @@ Book.prototype.createCard = function (index) {
   
   const deleteButton = document.createElement('button');
   deleteButton.classList.add('deleteButton');
-  //deleteButton.setAttribute('data-key', index); //tells delete button index in array
   deleteButton.textContent = 'Delete';
   bookButtons.appendChild(deleteButton);
 }
@@ -82,7 +81,6 @@ function createForm() {
   form.appendChild(submitBtn);
 }
 
-
 function removeForm() {
   document.querySelector('form').innerHTML = '';
 }
@@ -110,17 +108,18 @@ function addToLibrary (myLibrary) {
 function saveToLocalStorage (myLibrary) {
   localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
   if (myLibrary.length === 0) localStorage.clear();
-  console.log(localStorage);
 }
 
 function getFromLocalStorage () {
-  return JSON.parse(localStorage.myLibrary).map(jsonBook => new Book(jsonBook.title, jsonBook.author, jsonBook.pages, jsonBook.read));
+  const jsonArray = JSON.parse(localStorage.myLibrary);
+  return jsonArray.map(jsonBook => new Book(jsonBook.title, jsonBook.author, 
+                                            jsonBook.pages, jsonBook.read));
 }
+
 
 function clearBooks () {
   document.querySelector('.library').innerHTML = '';
 }
-
 
 function displayBooks (myLibrary) {
   clearBooks();
@@ -146,7 +145,9 @@ function allowBookAdding (myLibrary) {
 
 function bookButtonInput (myLibrary) {
   const readButtons = document.querySelectorAll('.readButton');
-  const bookIndex = function (e) {return e.target.parentElement.getAttribute('data-key')};
+  const bookIndex = function (e) {
+    return e.target.parentElement.getAttribute('data-key')
+  };
 
   readButtons.forEach( button => button.addEventListener('click', (e) => {
     button.classList.toggle('read');
@@ -154,13 +155,11 @@ function bookButtonInput (myLibrary) {
     if (myLibrary[bookIndex(e)].read === 'true') {
       myLibrary[bookIndex(e)].read = 'false';
       saveToLocalStorage(myLibrary);
-      console.log(myLibrary[bookIndex(e)])
     } else {
       myLibrary[bookIndex(e)].read = 'true';
       saveToLocalStorage(myLibrary);
-      console.log(myLibrary[bookIndex(e)])
     }
-  }));
+  })); //toggles button class and toggle actual value of 'read' on book item
   
   const deleteButtons = document.querySelectorAll('.deleteButton');
   deleteButtons.forEach( button => button.addEventListener('click', (e) => {
@@ -168,9 +167,6 @@ function bookButtonInput (myLibrary) {
     saveToLocalStorage(myLibrary);
     displayBooks(myLibrary);
   }));
-  //read needs to update the 'read' key on the object as well as toggle the
-  //button class. This means both the deleteButtons and readButtons need to 
-  //find the index of their book objects in the same place (a parent element)
 }
 
 
