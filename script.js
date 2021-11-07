@@ -35,6 +35,7 @@ Book.prototype.createCard = function (index) {
   
   const bookButtons = document.createElement('div');
   bookButtons.classList.add('bookButtons');
+  bookButtons.setAttribute('data-key', index); //tells delete button index in array
   book.appendChild(bookButtons);
   
   const readButton = document.createElement('button');
@@ -45,7 +46,7 @@ Book.prototype.createCard = function (index) {
   
   const deleteButton = document.createElement('button');
   deleteButton.classList.add('deleteButton');
-  deleteButton.setAttribute('data-key', index); //tells delete button index in array
+  //deleteButton.setAttribute('data-key', index); //tells delete button index in array
   deleteButton.textContent = 'Delete';
   bookButtons.appendChild(deleteButton);
 }
@@ -145,17 +146,31 @@ function allowBookAdding (myLibrary) {
 
 function bookButtonInput (myLibrary) {
   const readButtons = document.querySelectorAll('.readButton');
+  const bookIndex = function (e) {return e.target.parentElement.getAttribute('data-key')};
+
   readButtons.forEach( button => button.addEventListener('click', (e) => {
     button.classList.toggle('read');
+
+    if (myLibrary[bookIndex(e)].read === 'true') {
+      myLibrary[bookIndex(e)].read = 'false';
+      saveToLocalStorage(myLibrary);
+      console.log(myLibrary[bookIndex(e)])
+    } else {
+      myLibrary[bookIndex(e)].read = 'true';
+      saveToLocalStorage(myLibrary);
+      console.log(myLibrary[bookIndex(e)])
+    }
   }));
   
   const deleteButtons = document.querySelectorAll('.deleteButton');
   deleteButtons.forEach( button => button.addEventListener('click', (e) => {
-    const bookIndex = e.target.getAttribute('data-key');
-    myLibrary.splice(bookIndex, 1);
-    displayBooks(myLibrary);
+    myLibrary.splice(bookIndex(e), 1);
     saveToLocalStorage(myLibrary);
+    displayBooks(myLibrary);
   }));
+  //read needs to update the 'read' key on the object as well as toggle the
+  //button class. This means both the deleteButtons and readButtons need to 
+  //find the index of their book objects in the same place (a parent element)
 }
 
 
