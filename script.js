@@ -50,6 +50,7 @@ Book.prototype.createCard = function (index) {
   bookButtons.appendChild(deleteButton);
 }
 
+
 function createForm() {
   const form = document.querySelector('form');
 
@@ -79,6 +80,7 @@ function createForm() {
   submitBtn.textContent = 'Submit';
   form.appendChild(submitBtn);
 }
+
 
 function removeForm() {
   document.querySelector('form').innerHTML = '';
@@ -133,7 +135,7 @@ function allowBookAdding (myLibrary) {
 
 function bookButtonInput (myLibrary) {
   const readButtons = document.querySelectorAll('.readButton');
-  readButtons.forEach( button => button.addEventListener('click', (e) => { //create a function for this.
+  readButtons.forEach( button => button.addEventListener('click', (e) => {
     button.classList.toggle('read');
   }));
   
@@ -144,6 +146,7 @@ function bookButtonInput (myLibrary) {
     displayBooks(myLibrary);
   }));
 }
+
 
 function init () {
   let myLibrary = [];

@@ -29,7 +29,6 @@ header {
 	border-bottom: 1px solid rgb(180, 180, 180)
 }
 
-
 main {
 	display: flex;
 	height: 100%;
@@ -49,6 +48,7 @@ main {
 
 .sidebar .addBook {
 	width: 75%;
+	font-weight: bold;
 }
 
 form {
@@ -61,10 +61,12 @@ form {
 
  input {
 	 width: 75%;
+	 font-weight: bold;
  }
  
 .submitBtn {
 	width: 75%;
+	font-weight: bold;
 }
 
 .library {
@@ -81,11 +83,14 @@ form {
 	display: flex;
   flex-direction: column;
   justify-content: space-between;
-	background-color: rgba(146, 207, 233, .5);
+	background-color: rgb(199, 225, 238);
 	height: 33%;
 	width: 19%;
+	min-width: 11em;
 	padding: 10px;
 	text-align: center;
+	min-height: 160px;
+	border-radius: 5px;
 }
 
 .bookInfo {
@@ -109,17 +114,26 @@ form {
 	gap: 10px;
 }
 
-.readButton {
-	background-color: lightgray;
+.bookButtons button {
+	font-weight: bold;
 	width: 75%;
+	font-weight: bold;
+	border: 1px solid slategray;;
+	curser: pointer;
+	font-size: 15px;
+	border-radius: 2px;
+}
+
+.readButton {
+	background-color: rgb(172, 172, 172);
 	height: 48px;
 }
 
 .read {
-	background-color: green;
+	background-color: rgb(81, 140, 66);
 }
 
 .deleteButton {
-	background-color: red;
-	width: 75%;
+	background-color: rgb(253, 76, 85);
+	height: 24px;
 }
