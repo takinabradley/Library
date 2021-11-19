@@ -1,11 +1,11 @@
-function Book(title, author, pages, read) { //Object Constructor
-	this.title = title; 
+function Book (title, author, pages, read) {
+  this.title = title; 
 	this.author = author;
 	this.pages = pages;
 	this.read = read;
 }
 
-Book.prototype.createCard = function (index) {
+Book.prototype.createCard = function(index) {
   const library = document.querySelector('.library');
   
   const book = document.createElement('article');
@@ -93,6 +93,7 @@ function addToLibrary (myLibrary) {
   const addBtn = document.querySelector('.addBook');
 
   submitBtn.addEventListener('click', (e) => {
+    //console.log(document.querySelector('form').elements);
     const title = document.querySelector('.titleInput').value;
     const author = document.querySelector('.authorInput').value;
     const pages = document.querySelector('.pagesInput').value;
