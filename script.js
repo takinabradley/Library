@@ -1,53 +1,56 @@
-function Book(title, author, pages, read) { //Object Constructor
-	this.title = title; 
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
-}
+class Book { //Object Constructor
 
-Book.prototype.createCard = function (index) {
-  const library = document.querySelector('.library');
+  constructor(title, author, pages, read) {
+    this.title = title; 
+	  this.author = author;
+	  this.pages = pages;
+	  this.read = read;
+  }
+
+  createCard(index) {
+    const library = document.querySelector('.library');
   
-  const book = document.createElement('article');
-  book.classList.add('book');
-  library.appendChild(book);
-  
-  
-  const bookInfo = document.createElement('div');
-  bookInfo.classList.add('bookInfo');
-  book.appendChild(bookInfo);
-  
-  const bookTitle = document.createElement('h2');
-  bookTitle.classList.add('bookTitle');
-  bookTitle.textContent = this.title;
-  bookInfo.appendChild(bookTitle);
-  
-  const bookAuthor = document.createElement('span');
-  bookAuthor.classList.add('bookAuthor');
-  bookAuthor.textContent = this.author;
-  bookInfo.appendChild(bookAuthor);
-  
-  const bookPages = document.createElement('span');
-  bookPages.classList.add('bookPages');
-  bookPages.textContent = `${this.pages} pages`;
-  bookInfo.appendChild(bookPages);
-  
-  
-  const bookButtons = document.createElement('div');
-  bookButtons.classList.add('bookButtons');
-  bookButtons.setAttribute('data-key', index); //stores place of book in array
-  book.appendChild(bookButtons);
-  
-  const readButton = document.createElement('button');
-  readButton.classList.add('readButton');
-  if (this.read === 'true') readButton.classList.add('read');
-  readButton.textContent= "Read";
-  bookButtons.appendChild(readButton);
-  
-  const deleteButton = document.createElement('button');
-  deleteButton.classList.add('deleteButton');
-  deleteButton.textContent = 'Delete';
-  bookButtons.appendChild(deleteButton);
+    const book = document.createElement('article');
+    book.classList.add('book');
+    library.appendChild(book);
+    
+    
+    const bookInfo = document.createElement('div');
+    bookInfo.classList.add('bookInfo');
+    book.appendChild(bookInfo);
+    
+    const bookTitle = document.createElement('h2');
+    bookTitle.classList.add('bookTitle');
+    bookTitle.textContent = this.title;
+    bookInfo.appendChild(bookTitle);
+    
+    const bookAuthor = document.createElement('span');
+    bookAuthor.classList.add('bookAuthor');
+    bookAuthor.textContent = this.author;
+    bookInfo.appendChild(bookAuthor);
+    
+    const bookPages = document.createElement('span');
+    bookPages.classList.add('bookPages');
+    bookPages.textContent = `${this.pages} pages`;
+    bookInfo.appendChild(bookPages);
+    
+    
+    const bookButtons = document.createElement('div');
+    bookButtons.classList.add('bookButtons');
+    bookButtons.setAttribute('data-key', index); //stores place of book in array
+    book.appendChild(bookButtons);
+    
+    const readButton = document.createElement('button');
+    readButton.classList.add('readButton');
+    if (this.read === 'true') readButton.classList.add('read');
+    readButton.textContent= "Read";
+    bookButtons.appendChild(readButton);
+    
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('deleteButton');
+    deleteButton.textContent = 'Delete';
+    bookButtons.appendChild(deleteButton);
+  }
 }
 
 
