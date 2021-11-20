@@ -55,7 +55,10 @@ Book.prototype.createCard = function(index) {
 
 myLibrary = {
   library: [],
+}
+  
 
+myLibrary.prototype = {
   createForm: function() {
     const form = document.querySelector('form');
   
@@ -186,5 +189,7 @@ myLibrary = {
     this.allowBookAdding(this.library);
   }
 }
+
+myLibrary = Object.create(myLibrary.prototype)
 
 myLibrary.init();
