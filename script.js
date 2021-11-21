@@ -6,11 +6,11 @@ function Book (title, author, pages, read) {
 }
 
 Book.prototype.createCard = function(index) {
-  const library = document.querySelector('.library');
+  const libraryElem = document.querySelector('.library');
   
   const book = document.createElement('article');
   book.classList.add('book');
-  library.appendChild(book);
+  libraryElem.appendChild(book);
   
   
   const bookInfo = document.createElement('div');
@@ -93,6 +93,18 @@ MyLibrary = {
                                                       jsonBook.author, 
                                                       jsonBook.pages, 
                                                       jsonBook.read));
+  },
+
+  init: function() {
+    if (localStorage.length > 0) {
+      this.getFromLocalStorage();
+    } else {
+      const bookExample = new Book('Title', 'Author', 120, 'false');
+      this.library.push(bookExample);
+    }//do MyLibrary.add to make this more clear
+    
+    DOM.displayBooks();
+    Form.allowBookAdding();
   }
 };
 
@@ -164,7 +176,7 @@ DOM = {
     this.bookButtonInput();
   },
   //F
-  bookButtonInput: function() {
+  bookButtonInput: function() { //make this a Book method called in the forEach loop in above function?
     const readButtons = document.querySelectorAll('.readButton');
     const bookIndex = function (e) {
       return e.target.parentElement.getAttribute('data-key')
@@ -188,20 +200,7 @@ DOM = {
       MyLibrary.saveToLocalStorage(this.library);
       this.displayBooks(this.library);
     }));
-  },
-}
-
-function init () {
-  if (localStorage.length > 0) {
-    MyLibrary.getFromLocalStorage();
-  } else {
-    MyLibrary.library = [];
-    const bookExample = new Book('Title', 'Author', 120, 'false');
-    MyLibrary.library.push(bookExample);
   }
-  
-  DOM.displayBooks();
-  Form.allowBookAdding();
 }
 
-init();
+MyLibrary.init();
