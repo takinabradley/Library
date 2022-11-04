@@ -12,9 +12,9 @@ const ScreenController = (function (library, form, display) {
     
     //load anything that may be in localStorage
     library.getFromLocalStorage()
-    //create our form
+
+    //create our form and render books
     form.createForm(document.querySelector('form'))
-    //render our books
     display.render(library.books)
 
     //set event listeners to interact with 'library'
@@ -41,6 +41,8 @@ const ScreenController = (function (library, form, display) {
 
   function addBook(e) {
     e.preventDefault() //keep page from reloading
+
+    //add a book using form input values and rerender books
     const formElems = e.target.elements
     console.log(formElems)
     library.add(
