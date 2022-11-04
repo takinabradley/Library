@@ -4,12 +4,7 @@ import Form from './Form'
 import BookDisplay from './BookDisplay'
 
 //ScreenController.js
-const ScreenController = (function () {
-  //set our modules names to whatever we'd like
-  const library = Library
-  const form = Form
-  const display = BookDisplay
-  
+const ScreenController = (function (library, form, display) {  
   function init(formElem, displayElem) {
     //set the container 'form' and 'display' should render into
     form.formElem = formElem
@@ -59,6 +54,6 @@ const ScreenController = (function () {
   }
 
   return {init}
-})()
+})(Library, Form, BookDisplay)
 
 export default ScreenController
