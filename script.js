@@ -1,4 +1,4 @@
-function Book (title, author, pages, read) {
+/* function Book (title, author, pages, read) {
   this.title = title; 
 	this.author = author;
 	this.pages = pages;
@@ -48,6 +48,31 @@ Book.prototype.createCard = function(index) {
   deleteButton.classList.add('deleteButton');
   deleteButton.textContent = 'Delete';
   bookButtons.appendChild(deleteButton);
+} */
+
+function Book(title, author, pages, read) {
+
+  return {
+    title,
+    author,
+    pages,
+    get read() { return read },
+    set read(bool) { read = bool }
+  }
+}
+
+function Library() {
+  const library = [];
+
+  function addBook(title, author, pages, read) {
+    const newBook = Book(title, author, pages, read)
+    library.push(newBook)
+  }
+
+  return {
+    library,
+    addBook
+  }
 }
 
 
