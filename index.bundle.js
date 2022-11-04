@@ -769,15 +769,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 //ScreenController.js
-const ScreenController = (function () {
-  //set our modules names to whatever we'd like
-  const library = _Library__WEBPACK_IMPORTED_MODULE_1__["default"]
-  const form = _Form__WEBPACK_IMPORTED_MODULE_2__["default"]
-  const display = _BookDisplay__WEBPACK_IMPORTED_MODULE_3__["default"]
-
-  
-
-  
+const ScreenController = (function (library, form, display) {  
   function init(formElem, displayElem) {
     //set the container 'form' and 'display' should render into
     form.formElem = formElem
@@ -813,7 +805,7 @@ const ScreenController = (function () {
   } 
 
   function addBook(e) {
-    e.preventDefault()
+    e.preventDefault() //keep page from reloading
     const formElems = e.target.elements
     console.log(formElems)
     library.add(
@@ -827,7 +819,7 @@ const ScreenController = (function () {
   }
 
   return {init}
-})()
+})(_Library__WEBPACK_IMPORTED_MODULE_1__["default"], _Form__WEBPACK_IMPORTED_MODULE_2__["default"], _BookDisplay__WEBPACK_IMPORTED_MODULE_3__["default"])
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ScreenController);
 
